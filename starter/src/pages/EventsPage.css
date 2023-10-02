@@ -1,0 +1,64 @@
+/* EventPage.css */
+
+/* Page container */
+.event-page {
+  background-color: #e98585;
+  color: #dad2d2;
+  text-align: center;
+}
+
+/* Heading styles */
+.event-page h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Event list styles */
+.event-list {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+/* Individual event item styles */
+.event-item {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  padding: 20px;
+}
+
+/* Event title styles */
+.event-title {
+  color: green;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+/* Link styles */
+.event-title a {
+  text-decoration: none;
+}
+
+/* Event description styles */
+.event-description {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+/* Time styles */
+.event-time {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+/* Categories styles */
+.event-categories {
+  font-size: 14px;
+}
+
+/* Image styles */
+.event-image {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}

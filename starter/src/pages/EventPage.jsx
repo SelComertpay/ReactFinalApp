@@ -1,29 +1,58 @@
-import React from 'react';
-import { Heading, Text } from '@chakra-ui/react';
-import { useParams } from 'react-router-dom';
-import eventData from '../../events.json'; // Import your JSON data
-import "../styles/styles.css";
-export const EventPage = () => {
-  const { eventId } = useParams();
+import React, { useState } from "react";
+import { Heading } from "@chakra-ui/react";
+import { useLoaderData } from "react-router-dom";
+import { AddEventForm } from "./AddEventForm";
 
-  // Find the event with the matching eventId
-  const event = eventData.events.find((event) => event.id === parseInt(eventId));
+
+export const loader = async ({ params }) => {
+  const eventResponse = await fetch(`http://localhost:3000/events/${params.eventId}`);
+  const categoriesResponse = await fetch("http://localhost:3000/categories");
+  const usersResponse = await fetch("http://localhost:3000/users");
+
+  const event = await eventResponse.json();
+  const categories = await categoriesResponse.json();
+  const users = await usersResponse.json();
+
+  return {
+    event,
+    categories,
+    users,
+  };
+};
+
+export const EventPage = () => {
+  const { event, categories, users } = useLoaderData();
+
+  const [events, setEvents] = useState([]); // State to keep track of events
+
+  const handleAddEvent = (newEvent) => {
+    // Add the new event to the list of events
+    setEvents([...events, newEvent]);
+  };
 
   if (!event) {
-    // Handle the case where the event is not found
-    return <p>Event not found.</p>;
+    // Handle the case where event data is undefined or still loading
+    return <div>Loading event details...</div>;
   }
 
-  const { title, description, startTime, endTime, categoryIds, image } = event;
-
   return (
-    <div>
-      <Heading>{title}</Heading>
-      <Text>{description}</Text>
-      <Text>Start Time: {startTime}</Text>
-      <Text>End Time: {endTime}</Text>
-      <Text>Categories: {categoryIds.join(', ')}</Text>
-      <img src={image} alt={title} />
+    <div className="event-details">
+      <Heading>Event</Heading>
+
+      {/* AddEventForm to allow adding more events */}
+      <AddEventForm onAddEvent={handleAddEvent} />
+
+      {/* List of events */}
+      <ul>
+        {events.map((addedEvent) => (
+          <div key={addedEvent.id} className="event">
+            {/* Display details of each added event */}
+            <h2>{addedEvent.title}</h2>
+            <p>{addedEvent.description}</p>
+            {/* Add other details */}
+          </div>
+        ))}
+      </ul>
     </div>
   );
 };

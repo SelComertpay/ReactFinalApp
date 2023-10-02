@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import Modal from 'react-modal'; // Import the Modal component
-import "../styles/styles.css";
-// Function to generate a unique ID (you can implement it as per your requirements)
+import Modal from 'react-modal'; 
 const generateUniqueId = () => {
-  // Generate a unique ID logic goes here
-  // For simplicity, you can use a timestamp-based ID
+
   return Date.now().toString();
 };
 
