@@ -4,7 +4,7 @@ import ReactDOM from "react-dom/client";
 import { EventPage } from "./pages/EventPage";
 import { EventsPage, loader as eventsListLoader } from "./pages/EventsPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Root } from "./components/Root";
+import { Root } from "./components/Searchbars/Root";
 import { loader as eventDetailsLoader } from "./pages/EventPage";
 
 const router = createBrowserRouter([
@@ -13,12 +13,12 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       {
-        path: "/",
+         path: "/", // Default route for listing events
         element: <EventsPage />,
         loader: eventsListLoader,
       },
       {
-        path: "/event/:eventId",
+       path: "/events/:eventId", // Route for individual event details
         element: <EventPage />,
         loader: eventDetailsLoader,
       },

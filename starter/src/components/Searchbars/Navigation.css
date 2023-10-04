@@ -1,0 +1,14 @@
+nav {
+  background-color: hsl(189, 100%, 88%);
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  font-size: 1.5vw;
+  font-weight: bold;
+}
+
+nav ul li {
+  margin-top: 20px;
+  list-style-type: none;
+  text-decoration-line: underline;
+}

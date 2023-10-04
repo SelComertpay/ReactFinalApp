@@ -1,158 +1,90 @@
 import React, { useState } from "react";
-import { useLoaderData, Link } from "react-router-dom";
 import {
-  Box,
-  Flex,
-  Heading,
-  Input,
-  Radio,
-  RadioGroup,
-  Stack,
-  Wrap,
-  WrapItem,
+  Button,
   Center,
+  List,
+  ListItem,
+  Tag,
+  TagLabel,
+  Text,
+  Box, // Import Chakra UI's Box component
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
+import { Popup } from "../components/Popups/Popup";
+import { SearchBar } from "../components/Searchbars/SearchBar";
+import { SearchResultsList } from "../components/Searchbars/SearchResultsList";
+import { CatSearchBar } from "../components/Searchbars/CatSearchBar";
+import { CatSearchResultsList } from "../components/Searchbars/CatSearchResultsList";
 
 export const loader = async () => {
-  // Adjust the URLs to match your server endpoints
   const events = await fetch("http://localhost:3000/events");
   const categories = await fetch("http://localhost:3000/categories");
-  const users = await fetch("http://localhost:3000/users");
 
-  return {
-    events: await events.json(),
-    categories: await categories.json(),
-    users: await users.json(),
-  };
+  return { events: await events.json(), categories: await categories.json() };
 };
 
 export const EventsPage = () => {
-  const { events, categories, users } = useLoaderData();
+  const [buttonPopup, setButtonPopup] = useState(false);
+  const { events, categories } = useLoaderData();
 
-  // State for search and filter
-  const [searchField, setSearchField] = useState("");
-  const [radioValue, setRadioValue] = useState("");
-
-  const eventsWithCategories = events.map((event) => ({
-    ...event,
-    key: event.id,
-    categories: event.categoryIds.map(
-      (id) => categories.find((category) => category.id === id)?.name
-    ),
-  }));
-
-  const [filteredEvents, setFilteredEvents] = useState(eventsWithCategories);
-
-  const handleSearchInputChange = (value) => {
-    setSearchField(value);
-    setFilteredEvents(
-      eventsWithCategories.filter((event) => {
-        return event.title.toLowerCase().includes(value.toLowerCase());
-      })
-    );
-  };
-
-  const handleRadioButtonChange = (value) => {
-    setRadioValue(value);
-
-    setFilteredEvents(
-      eventsWithCategories.filter((event) => {
-        return event?.categories.includes(value.toLowerCase());
-      })
-    );
-  };
+  const [results, setResults] = useState([]);
+  const [resultsCat, setResultsCat] = useState([]);
 
   return (
-    <Flex
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-      minHeight="100vh"
-      bg="lightsteelblue"
-      padding="20px"
-    >
-      <Heading size="xl" color="blue.600" marginBottom="20px">
-        Events Page
-      </Heading>
-      <Flex flexDirection="column" alignItems="center" width="100%">
-        <Box width="100%" marginBottom="20px">
-          <Input
-            placeholder="Search by event name"
-            borderColor="blue.500"
-            variant="filled"
-            type="text"
-            id="searchField"
-            name="searchField"
-            value={searchField}
-            onChange={(event) => handleSearchInputChange(event.target.value)}
-          />
-        </Box>
-        <RadioGroup
-          onChange={(value) => handleRadioButtonChange(value)}
-          value={radioValue}
-        >
-          <Stack direction="row" spacing={4}>
-            <Radio value={"Sports"} colorScheme="teal">
-              Sports
-            </Radio>
-            <Radio value={"Games"} colorScheme="teal">
-              Games
-            </Radio>
-            <Radio value={"Relaxation"} colorScheme="teal">
-              Relaxation
-            </Radio>
-          </Stack>
-        </RadioGroup>
-      </Flex>
-      <Wrap spacing="20px" width="100%" justify="center">
-        {filteredEvents.map((event) => (
-          <WrapItem key={event.id}>
-            <Link to={`/events/${event.id}`}>
-              <Box
-                maxW="sm"
-                borderWidth="1px"
-                borderRadius="lg"
-                overflow="hidden"
-                p="4"
-                bg="white"
-                boxShadow="md"
-                transition="transform 0.2s"
-                _hover={{ transform: "scale(1.05)" }}
-              >
-                <Center>
-                  {/* Center the event image */}
-                  <img
-                    src={event.image}
-                    alt={event.title}
-                    style={{
-                      display: "block",
-                      margin: "0 auto",
-                      maxWidth: "100%",
-                    }}
-                  />
-                </Center>
-                <Heading size="md" color="blue.600">
-                  {event.title}
-                </Heading>
-                <p>{event.description}</p>
-                <Center>
-                  {/* Display the user image */}
-                  <img
-                    src={users.find((user) => user.id === event.createdBy)?.image}
-                    alt=""
-                    style={{
-                      display: "block",
-                      margin: "10px auto",
-                      maxWidth: "50px",
-                      borderRadius: "50%",
-                    }}
-                  />
-                </Center>
+    <Center display="flex" flexDir="column" align="center" bg="lightgrey">
+      <div className="search-bar-container">
+        <SearchBar setResults={setResults} style={{ fontSize: "20px" }} />
+        <SearchResultsList results={results} />
+      </div>
+      <div className="cat-search-bar-container">
+        <CatSearchBar setResultsCat={setResultsCat} style={{ fontSize: "20px" }} />
+        <CatSearchResultsList results={resultsCat} />
+      </div>
+      <Button
+        className="add-event"
+        onClick={() => setButtonPopup(true)}
+        colorScheme="blue"
+      >
+        Add Event
+      </Button>
+      <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+        <h3>Create Event</h3>
+      </Popup>
+      <List>
+        {events.map((event) => (
+          <ListItem key={event.id} className="event">
+            <Link to={`event/${event.id}`}>
+              <Box w="100%">
+                <img
+                  className="image"
+                  src={event.image}
+                  alt="Event"
+                  style={{ width: "900px", height: "600px" }}
+                />
               </Box>
             </Link>
-          </WrapItem>
+            <Box className="information">
+              <Text as="h2">{event.title}</Text>
+              <Text>{event.description}</Text>
+              <Text>Start time: {event.startTime}</Text>
+              <Text>End time: {event.endTime}</Text>
+              <Text>
+                Categories:
+                {categories
+                  .filter((category) =>
+                    event.categoryIds?.includes(category.id) ? category.name : ""
+                  )
+                  .map((category) => (
+                    <Tag key={category.id} size="sm" colorScheme="blue">
+                      <TagLabel>{category.name}</TagLabel>
+                    </Tag>
+                  ))}
+              </Text>
+            </Box>
+          </ListItem>
         ))}
-      </Wrap>
-    </Flex>
+      </List>
+    </Center>
   );
 };

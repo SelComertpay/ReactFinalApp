@@ -5,9 +5,13 @@ import { Box } from '@chakra-ui/react';
 
 export const Root = () => {
   return (
-    <Box>
+    <Box bgColor={"gray.100"}>
       <Navigation />
+      
       <Outlet />
     </Box>
   );
 };
+
+
+

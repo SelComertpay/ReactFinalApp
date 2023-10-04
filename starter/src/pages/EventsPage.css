@@ -1,64 +1,56 @@
-/* EventPage.css */
-
-/* Page container */
-.event-page {
-  background-color: #e98585;
-  color: #dad2d2;
-  text-align: center;
+.events-list {
+  background-color: #F0F4F8; /* Light blue background */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
-/* Heading styles */
-.event-page h1 {
-  font-size: 24px;
+.events-list h1 {
+  font-size: 8vw;
+  color: #2C5282; /* Dark blue text color */
+  font-weight: bold;
   margin-bottom: 20px;
 }
 
-/* Event list styles */
-.event-list {
-  list-style: none;
-  padding: 0;
-  text-align: center;
+.event {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3vh;
+  margin-bottom: 3vh;
+  border-width: 2px;
+  border-color: #2c8241; /* Dark blue border color */
+  border-radius: 5px;
+  background-color: #d3d3d3; /* White background */
 }
 
-/* Individual event item styles */
-.event-item {
+.add-event {
+  margin-top: 20px;
   margin-bottom: 20px;
-  border-bottom: 1px solid #ddd;
+  font-size: 1.5vw;
+  font-weight: bold;
+  color: #2C5282; /* Dark blue text color */
+  text-decoration-line: underline;
+}
+
+.information {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF; /* White background */
   padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow */
 }
 
-/* Event title styles */
-.event-title {
-  color: green;
+.image {
+  width: 40vw;
+  height: 25vw;
+  object-fit: cover; /* Ensure images maintain their aspect ratio */
+}
+
+.information h2 {
   font-size: 20px;
-  margin-bottom: 10px;
-}
-
-/* Link styles */
-.event-title a {
-  text-decoration: none;
-}
-
-/* Event description styles */
-.event-description {
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-
-/* Time styles */
-.event-time {
-  font-size: 14px;
-  margin-bottom: 5px;
-}
-
-/* Categories styles */
-.event-categories {
-  font-size: 14px;
-}
-
-/* Image styles */
-.event-image {
-  max-width: 100%;
-  display: block;
-  margin: 0 auto;
+  font-weight: bold;
+  color: #2C5282; /* Dark blue text color */
 }
