@@ -1,6 +1,6 @@
 import React from "react";
-import "./Popup3.css";
-import DeleteEvent from "../Searchbars/DeleteEvent"; // Use default import
+import "./ShowUp.css";
+import DeleteEvent from "../SecPages/DeleteEvent"; // Use default import
 
 export function Popup3(props) {
   return props.trigger ? (

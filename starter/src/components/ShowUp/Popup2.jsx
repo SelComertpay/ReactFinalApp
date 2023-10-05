@@ -1,5 +1,5 @@
 import React from "react";
-import "./Popup2.css";
+import "./ShowUp2.css";
 
 export function Popup2(props) {
   return props.trigger ? (

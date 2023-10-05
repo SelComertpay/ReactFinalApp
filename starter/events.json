@@ -14,7 +14,7 @@
   "events": [
     {
       "id": 2,
-      "createdBy": 1,
+      "createdBy": "1",
       "title": "Laser Tag mania",
       "description": "Let's play laser tag!",
       "image": "https://www.ctvnews.ca/polopoly_fs/1.5118552.1600965663!/httpImage/image.jpg_gen/derivatives/landscape_1020/image.jpg",
@@ -42,7 +42,7 @@
     {
       "id": 4,
       "createdBy": 2,
-      "title": "Yoga",
+      "title": "Yogaaa",
       "description": "It's a bit of a stretch.",
       "image": "https://ymcasouthflorida.org/wp-content/uploads/2019/12/AA2I8910-scaled.jpg",
       "categoryIds": [
@@ -170,6 +170,41 @@
       "endTime": "",
       "createdBy": 1,
       "id": "7eJfmLu"
+    },
+    {
+      "title": "Kickboxing",
+      "description": "AAAAAAAA",
+      "image": "A",
+      "categoryIds": [
+        2
+      ],
+      "location": "AAA",
+      "startTime": "AAAAAAAAAA",
+      "endTime": "AAAAAAAAAAAA",
+      "createdBy": 2,
+      "id": "oOUtszo"
+    },
+    {
+      "title": "VOETBAL",
+      "description": "zaalvoetbal",
+      "image": "https://unsplash.com/photos/Z0KjmjxUsKs",
+      "categoryIds": [],
+      "location": "TURKEY",
+      "startTime": "01",
+      "endTime": "04",
+      "createdBy": 1,
+      "id": "cLsNi8T"
+    },
+    {
+      "title": "",
+      "description": "",
+      "image": "",
+      "categoryIds": [],
+      "location": "",
+      "startTime": "",
+      "endTime": "",
+      "createdBy": [],
+      "id": "XakSTgm"
     }
   ],
   "categories": [

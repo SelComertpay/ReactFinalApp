@@ -7,15 +7,15 @@ import {
   Tag,
   TagLabel,
   Text,
-  Box, // Import Chakra UI's Box component
+  Box,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useLoaderData } from "react-router-dom";
-import { Popup } from "../components/Popups/Popup";
-import { SearchBar } from "../components/Searchbars/SearchBar";
-import { SearchResultsList } from "../components/Searchbars/SearchResultsList";
-import { CatSearchBar } from "../components/Searchbars/CatSearchBar";
-import { CatSearchResultsList } from "../components/Searchbars/CatSearchResultsList";
+import { Popup } from "../components/ShowUp/Popup";
+import { SearchBar } from "../components/SecPages/SearchBar";
+import { SearchResultsList } from "../components/SecPages/SearchResultsList";
+import { CatSearchBar } from "../components/SecPages/CatSearchBar";
+import { CatSearchResultsList } from "../components/SecPages/CatSearchResultsList";
 
 export const loader = async () => {
   const events = await fetch("http://localhost:3000/events");
@@ -34,11 +34,11 @@ export const EventsPage = () => {
   return (
     <Center display="flex" flexDir="column" align="center" bg="lightgrey">
       <div className="search-bar-container">
-        <SearchBar setResults={setResults} style={{ fontSize: "20px" }} />
+        <SearchBar setResults={setResults} />
         <SearchResultsList results={results} />
       </div>
       <div className="cat-search-bar-container">
-        <CatSearchBar setResultsCat={setResultsCat} style={{ fontSize: "20px" }} />
+        <CatSearchBar setResultsCat={setResultsCat} />
         <CatSearchResultsList results={resultsCat} />
       </div>
       <Button
@@ -49,12 +49,14 @@ export const EventsPage = () => {
         Add Event
       </Button>
       <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+        {/* Include a form for creating events here */}
         <h3>Create Event</h3>
+        {/* Add input fields, submit button, etc. */}
       </Popup>
       <List>
         {events.map((event) => (
           <ListItem key={event.id} className="event">
-            <Link to={`event/${event.id}`}>
+            <Link to={`/events/${event.id}`}>
               <Box w="100%">
                 <img
                   className="image"
