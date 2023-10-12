@@ -1,142 +1,209 @@
-
-import React, { useState } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
-import { Button, Center, Text, List, ListItem, Tag, TagLabel, Box } from "@chakra-ui/react";
-import { Popup2 } from "../components/ShowUp/Popup2";
-import { UpdateEventForm } from "../components/Fills/UpdateEventForm";
-import { Popup3 } from "../components/ShowUp/Popup3";
-import deleteEvent from "../components/SecPages/DeleteEvent"; // Import the DeleteEvent module
+import React from "react";
+import {
+  Center,
+  Flex,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Button,
+  Tag,
+  TagLabel,
+  Avatar,
+  Text,
+  Box,
+  Spacer,
+  Image,
+  useToast,
+  List,
+  ListItem,
+} from "@chakra-ui/react";
+import { useLoaderData, Link } from "react-router-dom";
 
 export const loader = async ({ params }) => {
   const event = await fetch(`http://localhost:3000/events/${params.eventId}`);
   const categories = await fetch("http://localhost:3000/categories");
   const users = await fetch("http://localhost:3000/users");
-
-  const eventData = await event.json();
-  const categoryData = await categories.json();
-  const userData = await users.json();
-
+  
   return {
-    event: eventData,
-    categories: categoryData,
-    users: userData,
+    event: await event.json(),
+    categories: await categories.json(),
+    users: await users.json(),
   };
 };
 
 export const EventPage = () => {
   const { event, categories, users } = useLoaderData();
-  const [buttonPopup, setButtonPopup] = useState(false);
-  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
-  const navigate = useNavigate();
-
-  const handleEventDeletion = async () => {
-    try {
-      const deleted = await deleteEvent(event.id); // Call the DeleteEvent module
-      if (deleted) {
-        // If the deletion is successful, you can perform any additional actions here
-        console.log('Event deleted successfully');
-        // You can also navigate back to the events page or update the UI as needed
-        navigate('/events');
-      } else {
-        // Handle errors if the deletion fails
-        console.error('Error deleting event');
-        // Optionally, display an error message to the user
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
+  const toast = useToast();
+  const categoryIds = Array.isArray(event.categoryIds) ? event.categoryIds : [];
+  const categoryNames = categoryIds.map((id) =>
+    categories.find((category) => category.id === id)?.name || "Unknown"
+  );
+ 
+  const reverseString = (date) => {
+    const splitDate = date.split("-");
+    const reverseArray = splitDate.reverse();
+    const joinArray = reverseArray.join("-");
+    return joinArray;
   };
-
-  const customStyles = {
-    backgroundColor: "darkgrey", // Set background color to dark grey
-    color: "darkgoldenrod", // Set font color to dark yellow
+  
+  const user = users.find((user) => user.id === event.createdBy) || {};
+  const finalEvent = {
+    ...event,
+    date: reverseString(event.startTime?.slice(0, 10).toString() || ""),
+    startTime: event.startTime
+      ? event.startTime.split("T")[1]?.slice(0, 5).toString()
+      : "",
+    endTime: event.endTime ? event.endTime.split("T")[1]?.slice(0, 5).toString() : "",
+    categoryNames: categoryNames,
+    userName: user.name || "Unknown",
+    userImage: user.image || "DefaultImageURL",
   };
-
+  
+  const showToast = (id) => {
+    toast({
+      title: "Warning",
+      description: `You deleted ${id.title}`,
+      duration: 2000,
+      isClosable: true,
+      status: "warning",
+      position: "top",
+    });
+  };
+  
+  const handleDelete = () => {
+    const toastId = "delete-confirmation";
+  toast({
+    id: toastId,
+    render: () => (
+     
+      <Button
+        color="darkgreen"
+        onClick={() => {
+          fetch(`http://localhost:3000/events/${event.id}`, {
+            method: "DELETE",
+          })
+            .then(() => {
+              toast.close(toastId);
+              showToast(event);
+              history.push("/events");
+            })
+            .catch((error) => {
+                            console.error("Error deleting event:", error);
+            });
+        }}
+         >
+        Are you 100% sure?
+      </Button>
+    ),
+    position: "top-right",
+    duration: 2000,
+    isClosable: true,
+  });
+};
+  
+const text = (label, content) => (
+    <Flex>
+      <Text fontStyle="italic" fontWeight="bold">
+        {label} {" =>"}
+      </Text>
+      <Text>{content}</Text>
+    </Flex>
+  );
+  
+  const listItems = (items) => (
+    <List>
+      {items.map((item, index) => (
+        <ListItem key={index}>{item}</ListItem>
+      ))}
+    </List>
+  );
+ 
   return (
-    <Center>
-      <div className="event-details">
-        <Button
-          className="back-button"
-          colorScheme="teal"
-          variant="outline"
-          style={{ marginBottom: "10px" }}
-          onClick={() => navigate("/events")}
-        >
-          Back to Events
-        </Button>
-
-        <Button colorScheme="yellow" onClick={() => setButtonPopup(true)}>
-          Edit Event
-        </Button>
-        <Popup2 trigger={buttonPopup} setTrigger={setButtonPopup}>
-          <h3>Edit Event</h3>
-          <UpdateEventForm event={event} />
-        </Popup2>
-
-        <Button colorScheme="red" onClick={() => setShowDeleteConfirmation(true)}>
-          Delete Event
-        </Button>
+    <Center display="flex" flexDir="column" align="center" bg="slateblue">
+      <Card minW={450} h="full">
+        <CardHeader fontWeight="bold">
+          <h1>{finalEvent.title}</h1>
+          <CardHeader m={0} p={0}>
+            <Flex flexDir="column" color="white">
+              <Image src={finalEvent.image} w="100%" h="15em" />
+            </Flex>
+          </CardHeader>
+        </CardHeader>
         
-        <Popup3
-          trigger={showDeleteConfirmation}
-          setTrigger={setShowDeleteConfirmation}
-          onDelete={handleEventDeletion} // Pass the handleEventDeletion function
-          event={event}
-        >
-          {showDeleteConfirmation && (
-            <>
-              <h3>Are you 100% sure you want to delete this event?</h3>
-              <Button
-                colorScheme="red"
-                onClick={() => {
-                  // You can remove the local onClick handler for "Confirm" button
-                  setShowDeleteConfirmation(false);
-                }}
-                style={customStyles}
-              >
-                Confirm
-              </Button>
-            </>
+        <CardBody align="center">
+          {text("Activity", finalEvent.description)}
+          {text("Date", finalEvent.date)}
+          {text("Time", `${finalEvent.startTime} - ${finalEvent.endTime} hrs`)}
+          {text("Location", finalEvent.location)}
+          {finalEvent.categoryNames ? (
+            <List>
+              <ListItem>
+                {text("Categories", listItems(finalEvent.categoryNames))}
+              </ListItem>
+            </List>
+          ) : (
+            <p>No categories available.</p>
           )}
-        </Popup3>
-
-        <List>
-          <ListItem
-            key={event.id}
-            className="event-info"
-            style={customStyles}
-          >
-            <img className="image" src={event.image} alt="Event" />
-            <Text as="h2" fontSize="xl" fontWeight="bold" color="teal.600">
-              {event.title}
-            </Text>
-            <Text color="gray.600">{event.description}</Text>
-            <Text>Start time: {event.startTime}</Text>
-            <Text>End time: {event.endTime}</Text>
-            <Text>
-              Categories:{" "}
-              {categories
-                .filter((category) => event.categoryIds?.includes(category.id))
-                .map((category) => (
-                  <Tag key={category.id} size="sm" colorScheme="blue">
-                    <TagLabel>{category.name}</TagLabel>
-                  </Tag>
-                ))}
-            </Text>
-            <Text>
-              Created by:{" "}
-              {users.find((user) => event.createdBy === user.id)?.name}
-              <Box>
-                <img
-                  className="image-user"
-                  src={users.find((user) => event.createdBy === user.id)?.image}
-                  alt="User"
+        </CardBody>
+        <hr />
+        
+        <CardFooter pl={-5} pr={0}>
+          <Flex w="100%">
+            <Box w="50%">
+              <Tag size="lg" borderRadius="full" bgColor="white">
+                <Avatar
+                  src={finalEvent.userImage}
+                  size="md"
+                  name={finalEvent.userName}
+                  ml={-3}
+                  mr={3}
                 />
-              </Box>
-            </Text>
-          </ListItem>
-        </List>
-      </div>
+                <TagLabel font={9}> {finalEvent.userName}</TagLabel>
+              </Tag>
+            </Box>
+           
+            <Spacer />
+            <Box w="16.5%">
+              <Link to={`/events/${event.id}/edit`}>
+                <Button
+                  colorScheme="green"
+                  size="sm"
+                  padding={4}
+                  onClick={(event) => {
+                    event.target.value;
+                  }}
+                >
+                  edit
+                </Button>
+              </Link>
+            </Box>
+            <Spacer />
+           
+            <Box w="16.5%">
+              <Link to={"/"}>
+                <Button
+                  colorScheme="red"
+                  size="sm"
+                  padding={4}
+                  onClick={handleDelete}
+                >
+                  delete
+                </Button>
+              </Link>
+            </Box>
+           
+            <Spacer />
+            <Box w="16.5%">
+              <Link to={"/"}>
+                <Button colorScheme="blue" size="sm" padding={4}>
+                  back
+                </Button>
+              </Link>
+            </Box>
+          </Flex>
+        </CardFooter>
+      </Card>
     </Center>
   );
 };

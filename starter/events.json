@@ -9,202 +9,123 @@
       "id": 2,
       "name": "Jane Bennett",
       "image": "https://global-uploads.webflow.com/5eecfecbe625d195e35b89f2/624bfb401d7131c760ca1c63_Elieska%20Lensink.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Emily Smith",
+      "image": "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+    },
+    {
+      "id": 4,
+      "name": "John Johnson",
+      "image": "https://images.pexels.com/photos/5220075/pexels-photo-5220075.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
     }
   ],
   "events": [
     {
-      "id": 2,
-      "createdBy": "1",
-      "title": "Laser Tag mania",
-      "description": "Let's play laser tag!",
-      "image": "https://www.ctvnews.ca/polopoly_fs/1.5118552.1600965663!/httpImage/image.jpg_gen/derivatives/landscape_1020/image.jpg",
+      "id": 1,
+      "createdBy": 1,
+      "title": "Trampoline party",
+      "description": "Bounce around with your friends",
+      "image": "https://i.pinimg.com/736x/3d/2f/af/3d2faf4e3188d34a9fcdc00df59e77b0.jpg",
       "categoryIds": [
         2
       ],
-      "location": "Blinded by the Lights Laser Tag, 15 Main St.",
-      "startTime": "2023-04-06T18:46",
-      "endTime": "2023-04-06T17:46"
+      "location": "My back yard",
+      "startTime": "2023-03-10T18:00",
+      "endTime": "2023-03-10T17:00:00.000Z"
     },
     {
-      "id": 3,
-      "createdBy": 2,
-      "title": "Badminton game",
-      "description": "Hit that shuttle!",
-      "image": "https://s3.eu-west-2.amazonaws.com/ws-activestirling/production/Badminton/_1200x630_crop_center-center_none/Badminton-3.jpg",
+      "id": 6,
+      "createdBy": 4,
+      "title": "Board Game Night",
+      "description": "Bring your favorite board games and join us!",
+      "image": "https://images.pexels.com/photos/278918/pexels-photo-278918.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "categoryIds": [
-        1,
-        2
+        2,
+        3
       ],
-      "location": "The Park",
-      "startTime": "2023-03-15T12:00:00.000Z",
-      "endTime": "2023-03-15T13:30:00.000Z"
+      "location": "The Board Game Cafe",
+      "startTime": "undefinedTundefinedTundefinedTundefinedT2023-04-20T19:00:00.000Z",
+      "endTime": "undefinedTundefinedTundefinedTundefinedT2023-04-20T22:00:00.000Z"
     },
     {
-      "id": 4,
-      "createdBy": 2,
-      "title": "Yogaaa",
-      "description": "It's a bit of a stretch.",
-      "image": "https://ymcasouthflorida.org/wp-content/uploads/2019/12/AA2I8910-scaled.jpg",
+      "id": 7,
+      "createdBy": 3,
+      "title": "Meditation and ",
+      "description": "Relax your mind and find inner peace.",
+      "image": "https://images.pexels.com/photos/5184327/pexels-photo-5184327.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "categoryIds": [
         3
       ],
-      "location": "Shavasana Yoga School",
-      "startTime": "2023-03-09T06:00:00.000Z",
-      "endTime": "2023-03-09T07:00:00.000Z"
+      "location": "Zen Garden Retreat",
+      "startTime": "undefinedTundefinedTundefinedT2023-03-25T17:30:00.000Z",
+      "endTime": "undefinedTundefinedTundefinedT2023-03-25T19:00:00.000Z"
     },
     {
-      "title": "Kickboxing",
-      "description": "",
-      "startTime": "",
-      "endTime": "",
-      "categoryIds": [],
-      "image": "",
-      "id": "1696090219499"
-    },
-    {
-      "title": "Badminton game",
-      "description": "",
-      "startTime": "",
-      "endTime": "",
-      "categoryIds": [],
-      "image": "",
-      "id": "1696090819985"
-    },
-    {
-      "title": "Kickboxing",
-      "description": "",
-      "startTime": "",
-      "endTime": "",
-      "categoryIds": [],
-      "image": "",
-      "id": "1696097723685"
-    },
-    {
-      "title": "sddsdsd",
-      "description": "",
-      "startTime": "",
-      "endTime": "",
-      "categoryIds": [],
-      "image": "",
-      "id": "1696099522408"
-    },
-    {
-      "title": "",
-      "description": "",
-      "image": "",
-      "categoryIds": [],
-      "location": "",
-      "startTime": "",
-      "endTime": "",
-      "createdBy": 1,
-      "id": "3k6lMpg"
-    },
-    {
-      "title": "Kickboxing",
-      "description": "qqqqqqqqqqqq",
-      "image": "",
+      "id": 8,
+      "createdBy": 4,
+      "title": "Soccer Match",
+      "description": "Enjoy a friendly soccer match with fellow enthusiasts.",
+      "image": "https://images.pexels.com/photos/3886271/pexels-photo-3886271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "categoryIds": [
         1
       ],
-      "location": "",
-      "startTime": "",
-      "endTime": "",
-      "createdBy": 2,
-      "id": "Pcluhen"
+      "location": "City Stadium",
+      "startTime": "2023-03-30T16:30:00.000Z",
+      "endTime": "2023-03-30T18:30:00.000Z"
     },
     {
-      "title": "hh",
-      "description": "",
-      "image": "",
-      "categoryIds": [],
-      "location": "",
-      "startTime": "",
-      "endTime": "",
-      "createdBy": 1,
-      "id": "vBVJmtF"
-    },
-    {
-      "title": "zzz",
-      "description": "zzz",
-      "image": "zzz",
+      "id": 9,
+      "createdBy": 3,
+      "title": "Movie Night Under the Stars",
+      "description": "Watch a classic movie outdoors with friends and family.",
+      "image": "https://images.pexels.com/photos/2507025/pexels-photo-2507025.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "categoryIds": [
-        2
+        3
       ],
-      "location": "zzzz",
-      "startTime": "zzz",
-      "endTime": "",
-      "createdBy": 1,
-      "id": "-6Fwuvj"
+      "location": "Open Field Cinema",
+      "startTime": "2023-04-05T20:00:00.000Z",
+      "endTime": "2023-04-05T22:30:00.000Z"
     },
     {
-      "title": "Kickboxing",
-      "description": "dd",
-      "image": "ddd",
-      "categoryIds": [],
-      "location": "",
-      "startTime": "",
-      "endTime": "",
-      "createdBy": 1,
-      "id": "RsrnxBz"
-    },
-    {
-      "title": "ajax1",
-      "description": "2122",
-      "image": "sel",
+      "id": 11,
+      "createdBy": 3,
+      "title": "Golf Tournament",
+      "description": "Test your golfing skills in a friendly competition.",
+      "image": "https://images.pexels.com/photos/1325654/pexels-photo-1325654.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "categoryIds": [
         1
       ],
-      "location": "amsterdam",
-      "startTime": "01",
-      "endTime": "02",
-      "createdBy": 2,
-      "id": "-sDfBtG"
+      "location": "Green Valley Golf Course",
+      "startTime": "2023-03-18T09:00:00.000Z",
+      "endTime": "2023-03-18T12:00:00.000Z"
     },
     {
-      "title": "",
-      "description": "",
-      "image": "",
-      "categoryIds": [],
-      "location": "",
-      "startTime": "",
-      "endTime": "",
-      "createdBy": 1,
-      "id": "7eJfmLu"
-    },
-    {
-      "title": "Kickboxing",
-      "description": "AAAAAAAA",
-      "image": "A",
+      "id": 12,
+      "createdBy": 4,
+      "title": "Art Exhibition",
+      "description": "Explore beautiful art pieces from local artists.",
+      "image": "https://images.pexels.com/photos/1579708/pexels-photo-1579708.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "categoryIds": [
-        2
+        3
       ],
-      "location": "AAA",
-      "startTime": "AAAAAAAAAA",
-      "endTime": "AAAAAAAAAAAA",
-      "createdBy": 2,
-      "id": "oOUtszo"
+      "location": "City Art Gallery",
+      "startTime": "2023-03-23T14:00:00.000Z",
+      "endTime": "2023-03-23T17:00:00.000Z"
     },
     {
-      "title": "VOETBAL",
-      "description": "zaalvoetbal",
-      "image": "https://unsplash.com/photos/Z0KjmjxUsKs",
-      "categoryIds": [],
-      "location": "TURKEY",
-      "startTime": "01",
-      "endTime": "04",
-      "createdBy": 1,
-      "id": "cLsNi8T"
-    },
-    {
-      "title": "",
-      "description": "",
-      "image": "",
-      "categoryIds": [],
-      "location": "",
-      "startTime": "",
-      "endTime": "",
-      "createdBy": [],
-      "id": "XakSTgm"
+      "id": 13,
+      "createdBy": 3,
+      "title": "Hiking Adventure",
+      "description": "Discover the beauty of nature on a scenic hike.",
+      "image": "https://images.pexels.com/photos/925263/pexels-photo-925263.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoryIds": [
+        1
+      ],
+      "location": "Mountain Trails Preserve",
+      "startTime": "2023-03-28T10:30:00.000Z",
+      "endTime": "2023-03-28T13:30:00.000Z"
     }
   ],
   "categories": [

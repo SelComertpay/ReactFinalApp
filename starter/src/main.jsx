@@ -1,11 +1,18 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { EventPage } from "./MainPages/EventPage";
-import { EventsPage, loader as eventsListLoader } from "./MainPages/EventsPage";
+import { EventPage, loader as eventPageLoader } from "./MainPages/EventPage";
+import { EventsPage, loader as eventsPageLoader } from "./MainPages/EventsPage";
+import {
+  createAction,
+  EventCreation,
+  loader as eventCreationLoader,
+} from "./MainPages/EventCreation";
+import { EventEdit, loader as eventEditLoader } from "./MainPages/EventEdit";
+
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Root } from "./components/SecPages/Root";
-import { loader as eventDetailsLoader } from "./MainPages/EventPage";
+import { Root } from "./Components/Root";
+
 
 const router = createBrowserRouter([
   {
@@ -13,19 +20,27 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       {
-        path: "/", // Default route for listing events
+        path: "/",
         element: <EventsPage />,
-        loader: eventsListLoader,
+        loader: eventsPageLoader,
       },
+
       {
-        path: "/events/:eventId", // Route for individual event details
+        path: `/events/:eventId`,
         element: <EventPage />,
-        loader: eventDetailsLoader,
+        loader: eventPageLoader,
+      },
+
+      {
+        path: "/add",
+        element: <EventCreation />,
+        loader: eventCreationLoader,
+        action: createAction,
       },
       {
-        path: "/events", // Add this route for the "/events" path
-        element: <EventsPage />,
-        loader: eventsListLoader,
+        path: "/events/:eventId/edit",
+        element: <EventEdit />,
+        loader: eventEditLoader,
       },
     ],
   },
