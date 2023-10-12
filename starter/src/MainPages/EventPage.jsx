@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Center,
   Flex,
@@ -70,7 +71,9 @@ export const EventPage = () => {
       position: "top",
     });
   };
+   const navigate = useNavigate();
   
+
   const handleDelete = () => {
     const toastId = "delete-confirmation";
   toast({
@@ -78,26 +81,25 @@ export const EventPage = () => {
     render: () => (
      
       <Button
-        color="darkgreen"
-        onClick={() => {
-          fetch(`http://localhost:3000/events/${event.id}`, {
-            method: "DELETE",
-          })
-            .then(() => {
-              toast.close(toastId);
-              showToast(event);
-              history.push("/events");
+          color="darkgreen"
+          onClick={() => {
+            fetch(`http://localhost:3000/events/${event.id}`, {
+              method: 'DELETE',
             })
-            .catch((error) => {
-                            console.error("Error deleting event:", error);
-            });
-        }}
-         >
-        Are you 100% sure?
-      </Button>
+              .then(() => {
+                toast.close(toastId);
+                showToast(event);
+                navigate('/');
+              })
+              .catch((error) => {
+                console.error('Error deleting event:', error);
+              });
+          }}
+        >
+Are you 100% sure </Button>
     ),
     position: "top-right",
-    duration: 2000,
+    duration: 3000,
     isClosable: true,
   });
 };
