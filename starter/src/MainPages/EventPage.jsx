@@ -164,8 +164,9 @@ const text = (label, content) => (
                 <TagLabel font={9}> {finalEvent.userName}</TagLabel>
               </Tag>
             </Box>
-           
-            <Spacer />
+           <Spacer />
+            
+            
             <Box w="16.5%">
               <Link to={`/events/${event.id}/edit`}>
                 <Button
@@ -183,7 +184,7 @@ const text = (label, content) => (
             <Spacer />
            
             <Box w="16.5%">
-              <Link to={"/"}>
+            
                 <Button
                   colorScheme="red"
                   size="sm"
@@ -192,7 +193,7 @@ const text = (label, content) => (
                 >
                   delete
                 </Button>
-              </Link>
+              
             </Box>
            
             <Spacer />
