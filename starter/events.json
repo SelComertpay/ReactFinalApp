@@ -65,15 +65,15 @@
     {
       "id": 8,
       "createdBy": 4,
-      "title": "Soccer Match",
+      "title": "Soccer Matcha",
       "description": "Enjoy a friendly soccer match with fellow enthusiasts.",
       "image": "https://images.pexels.com/photos/3886271/pexels-photo-3886271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "categoryIds": [
         1
       ],
       "location": "City Stadium",
-      "startTime": "2023-03-30T16:30:00.000Z",
-      "endTime": "2023-03-30T18:30:00.000Z"
+      "startTime": "undefinedT2023-03-30T16:30:00.000Z",
+      "endTime": "undefinedT2023-03-30T18:30:00.000Z"
     },
     {
       "id": 9,
